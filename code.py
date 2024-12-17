@@ -10,15 +10,19 @@ bot = telebot.TeleBot(TOKEN)
 def main_menu(message):
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
     mrk = types.KeyboardButton("Создать новый заказ")
-    # mrk1 = types.KeyboardButton("Мои заказы")
-    # mrk2 = types.KeyboardButton("Мой баланс")
+    mrk1 = types.KeyboardButton("Мои заказы")
+    mrk2 = types.KeyboardButton("Мой баланс")
+    mrk3 = types.KeyboardButton("Заработать")
+    mrk4 = types.KeyboardButton("Помощь")
+    mrk5 = types.KeyboardButton("FAQ")
+    mrk6 = types.KeyboardButton("Чеки")
     # markup.add(types.InlineKeyboardButton("\ud83d\udcc4 Мои заказы", callback_data='my_orders'))
     # markup.add(types.InlineKeyboardButton("\ud83d\udcb3 Мой баланс", callback_data='my_balance'))
     # markup.add(types.InlineKeyboardButton("\ud83d\ude80 Заработать", callback_data='earn'))
     # markup.add(types.InlineKeyboardButton("\ud83d\udcd6 Помощь", callback_data='help'))
     # markup.add(types.InlineKeyboardButton("FAQ", callback_data='faq'))
     # markup.add(types.InlineKeyboardButton("\ud83d\udcc5 Чеки", callback_data='receipts'))
-    markup.add(mrk,)
+    markup.add(mrk,mrk1, mrk2, mrk3, mrk4, mrk5, mrk6)
     bot.send_message(message.chat.id, "Добро пожаловать! Выберите действие:", reply_markup=markup)
 
 # @bot.callback_query_handler(func=lambda call: True)
@@ -55,34 +59,75 @@ def start_text(message):
     elif message.text == "Назад в меню":
         main_menu(message)
 def show_my_orders(message):
-    markup = types.InlineKeyboardMarkup()
-    markup.add(types.InlineKeyboardButton("\u2b05\ufe0f Назад", callback_data='back_to_main'))
-    bot.edit_message_text("Ваши заказы пока недоступны.", message.chat.id, message.message_id, reply_markup=markup)
-
+    if message.text == "Мои заказы":
+        markup1 = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        mar = types.KeyboardButton("Корзина")
+        mar2 = types.KeyboardButton("Назад в меню")
+        markup1.add(mar, mar2)
+        bot.send_message(message.chat.id,
+                         "Выберите, что вам нужно, если хотите вернуться в меню просто нажмите кнопку 'Назад в меню'.",
+                         reply_markup=markup1)
+    elif message.text == "Назад в меню":
+        main_menu(message)
 def show_balance(message):
-    markup = types.InlineKeyboardMarkup()
-    markup.add(types.ReplyKeyboardMarkup("\u2b05\ufe0f Назад", resize_keyboard=markup))
-    bot.edit_message_text("Ваш текущий баланс: 0 руб.", message.chat.id, message.message_id, reply_markup=markup)
+    if message.text == "Мой баланс":
+        markup1 = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        mar = types.KeyboardButton("Одежда")
+        mar2 = types.KeyboardButton("Назад в меню")
+        markup1.add(mar, mar2)
+        bot.send_message(message.chat.id,
+                         "Выберите, что вам нужно, если хотите вернуться в меню просто нажмите кнопку 'Назад в меню'.",
+                         reply_markup=markup1)
+    elif message.text == "Назад в меню":
+        main_menu(message)
 
 def show_earn_menu(message):
-    markup = types.InlineKeyboardMarkup()
-    markup.add(types.InlineKeyboardButton("\u2b05\ufe0f Назад", callback_data='back_to_main'))
-    bot.edit_message_text("Раздел заработка пока в разработке.", message.chat.id, message.message_id, reply_markup=markup)
+    if message.text == "Заработать":
+        markup1 = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        mar = types.KeyboardButton("Одежда")
+        mar2 = types.KeyboardButton("Назад в меню")
+        markup1.add(mar, mar2)
+        bot.send_message(message.chat.id,
+                         "Выберите, что вам нужно, если хотите вернуться в меню просто нажмите кнопку 'Назад в меню'.",
+                         reply_markup=markup1)
+    elif message.text == "Назад в меню":
+        main_menu(message)
 
 def show_help(message):
-    markup = types.InlineKeyboardMarkup()
-    markup.add(types.InlineKeyboardButton("\u2b05\ufe0f Назад", callback_data='back_to_main'))
-    bot.edit_message_text("Помощь:\n1. Для создания заказа выберите соответствующий пункт.", message.chat.id, message.message_id, reply_markup=markup)
+    if message.text == "Помощь":
+        markup1 = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        mar = types.KeyboardButton("Одежда")
+        mar2 = types.KeyboardButton("Назад в меню")
+        markup1.add(mar, mar2)
+        bot.send_message(message.chat.id,
+                         "Выберите, что вам нужно, если хотите вернуться в меню просто нажмите кнопку 'Назад в меню'.",
+                         reply_markup=markup1)
+    elif message.text == "Назад в меню":
+        main_menu(message)
 
 def show_faq(message):
-    markup = types.InlineKeyboardMarkup()
-    markup.add(types.InlineKeyboardButton("\u2b05\ufe0f Назад", callback_data='back_to_main'))
-    bot.edit_message_text("FAQ:\nЧасто задаваемые вопросы будут здесь.", message.chat.id, message.message_id, reply_markup=markup)
+    if message.text == "FAQ":
+        markup1 = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        mar = types.KeyboardButton("Одежда")
+        mar2 = types.KeyboardButton("Назад в меню")
+        markup1.add(mar, mar2)
+        bot.send_message(message.chat.id,
+                         "Выберите, что вам нужно, если хотите вернуться в меню просто нажмите кнопку 'Назад в меню'.",
+                         reply_markup=markup1)
+    elif message.text == "Назад в меню":
+        main_menu(message)
 
 def show_receipts(message):
-    markup = types.InlineKeyboardMarkup()
-    markup.add(types.InlineKeyboardButton("\u2b05\ufe0f Назад", callback_data='back_to_main'))
-    bot.edit_message_text("Ваши чеки пока недоступны.", message.chat.id, message.message_id, reply_markup=markup)
+    if message.text == "Чеки":
+        markup1 = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        mar = types.KeyboardButton("Одежда")
+        mar2 = types.KeyboardButton("Назад в меню")
+        markup1.add(mar, mar2)
+        bot.send_message(message.chat.id,
+                         "Выберите, что вам нужно, если хотите вернуться в меню просто нажмите кнопку 'Назад в меню'.",
+                         reply_markup=markup1)
+    elif message.text == "Назад в меню":
+        main_menu(message)
 
 
 
