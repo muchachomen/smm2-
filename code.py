@@ -58,8 +58,6 @@ def start_text(message):
         bot.send_message(message.chat.id,"Выберите, что вам нужно, если хотите вернуться в меню просто нажмите кнопку 'Назад в меню'.",
                          reply_markup=markup1)
 
-    elif message.text == "Товары":
-        bot.get_file(items)
     elif message.text == "Назад в меню":
         main_menu(message)
     elif message.text == "Мои заказы":
@@ -128,6 +126,8 @@ def start_text(message):
                          reply_markup=markup1e)
     elif message.text == "Назад в меню":
         main_menu()
+
+
 
 
 
