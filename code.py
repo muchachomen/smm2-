@@ -49,6 +49,7 @@ def main_menu(message):
 # Обработчик текстовых сообщений
 @bot.message_handler(content_types=['text'])
 def start_text(message):
+    items = [1, 2, 3, 4]
     if message.text == "Создать новый заказ":
         markup1 = types.ReplyKeyboardMarkup(resize_keyboard=True)
         mar = types.KeyboardButton("Товары")
@@ -56,6 +57,9 @@ def start_text(message):
         markup1.add(mar, mar2)
         bot.send_message(message.chat.id,"Выберите, что вам нужно, если хотите вернуться в меню просто нажмите кнопку 'Назад в меню'.",
                          reply_markup=markup1)
+
+    elif message.text == "Товары":
+        bot.get_file(items)
     elif message.text == "Назад в меню":
         main_menu(message)
     elif message.text == "Мои заказы":
